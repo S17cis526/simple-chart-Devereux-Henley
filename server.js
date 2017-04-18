@@ -1,7 +1,7 @@
 "use strict;"
 
 // The port to serve on
-const PORT = 3000;
+const PORT = 3449;
 
 // global variables
 var fs = require('fs');
@@ -40,18 +40,24 @@ function serveFile(file, type, req, res) {
  */
 function handleRequest(req, res) {
   switch(req.url) {
-    case '/':
-    case '/index.html':
-      serveFile('public/index.html', 'text/html', req, res);
-      break;
-    case '/style.css':
-      serveFile('public/style.css', 'text/css', req, res);
-      break;
-    case '/script.js':
-      serveFile('public/script.js', 'text/css', req, res);
-      break;
-    default:
-      res.statusCode = 404;
-      res.end("Not found");
+  case '/':
+  case '/index.html':
+    serveFile('public/index.html', 'text/html', req, res);
+    break;
+  case '/style.css':
+    serveFile('public/style.css', 'text/css', req, res);
+    break;
+  case '/script.js':
+    serveFile('public/script.js', 'text/css', req, res);
+    break;
+  case '/peerReview.json':
+    serveFile('data/peerReview.json','application/json', req, res);
+    break;
+  case '/pointDistribution.json':
+    serveFile('data/pointDistribution.json','application/json', req, res);
+    break;
+  default:
+    res.statusCode = 404;
+    res.end("Not found");
   }
 }
